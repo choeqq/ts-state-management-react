@@ -13,7 +13,7 @@ export function App() {
       <Box maxWidth="8xl" margin="auto" p={5}>
         <TopBar setTodos={setTodos} />
         <TodoList todos={todos} setTodos={setTodos} />
-        <TodoAdd setTodos={setTodos} />
+        <TodoAdd todos={todos} setTodos={setTodos} />
       </Box>
     </ChakraProvider>
   );

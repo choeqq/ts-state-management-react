@@ -1,6 +1,12 @@
 import * as React from "react";
 import { Button, Input, Flex, Checkbox, Heading } from "@chakra-ui/react";
-import { SetTodosType, TodosType } from "../store";
+import {
+  SetTodosType,
+  TodosType,
+  toggleTodo,
+  updateTodo,
+  removeTodo,
+} from "../store";
 
 function TodoListItems({
   todos,
@@ -11,11 +17,19 @@ function TodoListItems({
 }) {
   return (
     <>
-      {[].map((todo: { id: number; text: string }) => (
+      {todos.map((todo: { id: number; text: string }) => (
         <Flex pt={2} key={todo.id}>
-          <Checkbox />
-          <Input mx={2} value={todo.text} />
-          <Button>Delete</Button>
+          <Checkbox onClick={() => setTodos(toggleTodo(todos, todo.id))} />
+          <Input
+            mx={2}
+            value={todo.text}
+            onChange={(e) =>
+              setTodos(updateTodo(todos, todo.id, e.target.value))
+            }
+          />
+          <Button onClick={() => setTodos(removeTodo(todos, todo.id))}>
+            Delete
+          </Button>
         </Flex>
       ))}
     </>
